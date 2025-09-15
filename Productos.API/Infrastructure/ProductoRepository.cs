@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Productos.API.Application;
 using Productos.API.Domain;
-// using Productos.API.Infrastructure;
 
 namespace Productos.API.Infrastructure;
 
@@ -26,7 +25,23 @@ public class ProductoRepository : IProductoRepository
         }
     }
 
-    public async Task<IEnumerable<Producto>> GetAllAsync() => await _context.Productos.ToListAsync();
+    public async Task<IEnumerable<Producto>> GetAllAsync(
+        int pageNumber,
+        int pageSize,
+        string? nombre = null,
+        string? categoria = null)
+    {
+        var query = _context.Productos.AsQueryable();
+        if (!string.IsNullOrEmpty(nombre))
+            query = query.Where(p => p.Nombre.Contains(nombre));
+        if (!string.IsNullOrEmpty(categoria))
+            query = query.Where(p => p.Categoria == categoria);
+        query = query.OrderBy(p => p.Nombre);
+        return await query
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+    }
 
     public async Task<Producto?> GetByIdAsync(int id) => await _context.Productos.FindAsync(id);
 
