@@ -16,11 +16,16 @@ public class ProductosController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Producto>>> Get()
+    public async Task<ActionResult<IEnumerable<Producto>>> Get(
+     [FromQuery] int pageNumber = 1,
+     [FromQuery] int pageSize = 10,
+     [FromQuery] string? nombre = null,
+     [FromQuery] string? categoria = null)
     {
-        var productos = await _service.ListarProductosAsync();
+        var productos = await _service.ListarProductosAsync(pageNumber, pageSize, nombre, categoria);
         return Ok(productos);
     }
+
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Producto>> Get(int id)

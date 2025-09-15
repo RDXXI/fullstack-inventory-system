@@ -6,11 +6,9 @@ using Productos.API.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Conexión a SQL Server (ajusta tu connection string)
 builder.Services.AddDbContext<ProductosDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Inyección de dependencias
 builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
 builder.Services.AddScoped<ProductoService>();
 
@@ -33,7 +31,10 @@ app.UseCors("AllowAll");
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Productos API v1");
+    });
 }
 app.UseHttpsRedirection();
 app.MapControllers();

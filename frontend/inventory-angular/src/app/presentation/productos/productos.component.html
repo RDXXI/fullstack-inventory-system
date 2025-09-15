@@ -1,0 +1,46 @@
+<mat-toolbar color="primary"> Productos </mat-toolbar>
+
+<div class="container">
+  <form [formGroup]="filterForm" class="filters" (ngSubmit)="onFilter()">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput placeholder="Buscar por nombre" formControlName="nombre" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Categoría</mat-label>
+      <input matInput placeholder="Buscar por categoría" formControlName="categoria" />
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" type="submit">Filtrar</button>
+      <button mat-stroked-button type="button" (click)="clearFilter()">Limpiar</button>
+    </div>
+  </form>
+
+  <div *ngIf="loading" class="loading">Cargando...</div>
+
+  <div class="grid" *ngIf="!loading && productos.length > 0; else sinProductos">
+    <mat-card *ngFor="let p of productos" class="card">
+      <img mat-card-image [src]="p.imagenUrl || 'assets/default.jpg'" [alt]="p.nombre" />
+      <mat-card-title>{{ p.nombre }}</mat-card-title>
+      <mat-card-content>
+        <p>{{ p.descripcion }}</p>
+        <p><strong>Precio:</strong> ${{ p.precio }}</p>
+        <p><strong>Stock:</strong> {{ p.stock }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <ng-template #sinProductos>
+    <p class="no-results">No se encontraron productos.</p>
+  </ng-template>
+
+  <mat-paginator
+    [length]="totalItems"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
+</div>

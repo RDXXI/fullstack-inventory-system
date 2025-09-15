@@ -18,10 +18,13 @@ public class ProductoService
         await _repository.AddAsync(producto);
         return producto;
     }
-
-    public async Task<IEnumerable<Producto>> ListarProductosAsync()
+    public async Task<IEnumerable<Producto>> ListarProductosAsync(
+        int pageNumber,
+        int pageSize,
+        string? nombre = null,
+        string? categoria = null)
     {
-        return await _repository.GetAllAsync();
+        return await _repository.GetAllAsync(pageNumber, pageSize, nombre, categoria);
     }
 
     public async Task<Producto?> ObtenerProductoPorIdAsync(int id)
