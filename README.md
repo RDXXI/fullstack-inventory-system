@@ -95,7 +95,7 @@ dotnet run
 
 
 ### Entregables
-  ![React](https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg) 
+  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React" width="50" height="50">
 1. Listado dinámico de productos y transacciones con paginación.
 2. Pantalla para la creación de productos.
 3. Pantalla para la edición de productos.
