@@ -92,3 +92,13 @@ dotnet ef database update
 dotnet run
 ```
 
+
+
+### Entregables
+1. Listado dinámico de productos y transacciones con paginación.
+2. Pantalla para la creación de productos.
+3. Pantalla para la edición de productos.
+4. Pantalla para la creación de transacciones.
+5. Pantalla para la edición de transacciones.
+6. Pantalla de filtros dinámicos.
+7. Pantalla para la consulta de información de un formulario (extra).
