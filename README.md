@@ -105,7 +105,7 @@ dotnet run
 7. Pantalla para la consulta de información de un formulario (extra).
 
    
-  ![Angular](https://angular.io/assets/images/logos/angular/angular.svg)
+<img src="https://angular.io/assets/images/logos/angular/angular.svg" alt="Angular" width="75" height="75">
 1. Listado dinámico de productos y transacciones con paginación.
 2. Pantalla para la creación de productos.
 3. Pantalla para la edición de productos.
