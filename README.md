@@ -91,18 +91,51 @@ dotnet run
 
 
 
-### Entregables
-  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React" width="75" height="75">
-1. Listado dinámico de productos y transacciones con paginación.
-2. Pantalla para la creación de productos.
-3. Pantalla para la edición de productos.
-4. Pantalla para la creación de transacciones.
-5. Pantalla para la edición de transacciones.
-6. Pantalla de filtros dinámicos.
-7. Pantalla para la consulta de información de un formulario (extra).
+## Entregables
+  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React" width="100" height="100">
 
-   
-<img src="https://angular.io/assets/images/logos/angular/angular.svg" alt="Angular" width="75" height="75">
+### Uris
+*http://localhost:5173/productos*
+*http://localhost:5173/ListaProductos*
+*http://localhost:5173/productosItem*
+*http://localhost:5173/transacciones*
+*http://localhost:5173/transaccionesItem*
+*http://localhost:5173/ListaTransacciones*
+
+1. Listado dinámico de productos y transacciones con paginación.
+  Producto
+    <img width="962" height="702" alt="image" src="https://github.com/user-attachments/assets/bb6f2fc0-2ba9-44e9-bb0d-470e285949b4" />
+    <img width="939" height="686" alt="image" src="https://github.com/user-attachments/assets/e02c2bad-cde4-4139-a8a2-c29a5181a810" />
+  Transacción
+    <img width="1027" height="680" alt="image" src="https://github.com/user-attachments/assets/b1a41503-78f2-4c85-b9a4-0a5c7ba70d65" />
+
+2. Pantalla para la creación de productos.
+<img width="707" height="558" alt="image" src="https://github.com/user-attachments/assets/53245798-8a7a-4d73-bc91-be7b5945c8e4" />
+
+3. Pantalla para la edición de productos.
+  <img width="869" height="642" alt="image" src="https://github.com/user-attachments/assets/346972ac-9e7c-466c-b9cd-80b402c54aff" />
+
+4. Pantalla para la creación de transacciones.
+  <img width="847" height="619" alt="image" src="https://github.com/user-attachments/assets/35f76124-b56d-44ca-81de-d210bd5506c8" />
+  <img width="854" height="619" alt="image" src="https://github.com/user-attachments/assets/7c2a166c-6787-465e-8a37-bdab99880552" />
+
+5. Pantalla para la edición de transacciones.
+  <img width="869" height="642" alt="image" src="https://github.com/user-attachments/assets/346972ac-9e7c-466c-b9cd-80b402c54aff" />
+  
+6. Pantalla de filtros dinámicos.
+  <img width="1042" height="694" alt="image" src="https://github.com/user-attachments/assets/09833091-9497-4cf3-ba8f-6af870e4abfb" />
+
+7. Pantalla para la consulta de información de un formulario (extra).
+  <img width="1042" height="694" alt="image" src="https://github.com/user-attachments/assets/09833091-9497-4cf3-ba8f-6af870e4abfb" />
+
+8. Pantallas de transacciones Unificadas.
+  <img width="565" height="611" alt="image" src="https://github.com/user-attachments/assets/ecdd6e32-015e-43a6-9d2b-6883e13555f0" />
+
+9. pantalla de Productos unificadas.
+  <img width="362" height="619" alt="image" src="https://github.com/user-attachments/assets/4c6a5992-194c-47d6-a597-9f101f8b8ea3" />
+
+    
+<img src="https://angular.io/assets/images/logos/angular/angular.svg" alt="Angular" width="100" height="100">
 1. Listado dinámico de productos y transacciones con paginación.
 2. Pantalla para la creación de productos.
 3. Pantalla para la edición de productos.
