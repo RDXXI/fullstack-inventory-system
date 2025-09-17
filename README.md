@@ -1,8 +1,5 @@
-# fullstack-inventory-system
-
-## Fullstack Inventory Management App | .NET Microservices + React + SQL
-
-# Sistema de Gestión de Inventario
+# Fullstack Inventory Management App/Sistema de Gestión de Inventario
+# .NET Microservices + React + Angular + SQL
 
 Evaluación técnica para el puesto de Desarrollador Full Stack.
 
