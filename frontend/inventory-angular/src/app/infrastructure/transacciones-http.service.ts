@@ -20,7 +20,7 @@ export class TransaccionesHttpService implements ITransaccionesService {
     tipo?: string,
     productoId?: number,
     fechaDesde?: string,
-    fechaHasta?: string,
+    fechaHasta?: string
   ): Observable<PagedResult<Transaccion>> {
     let params = new HttpParams()
       .set('pageNumber', pageNumber.toString())
@@ -31,20 +31,19 @@ export class TransaccionesHttpService implements ITransaccionesService {
     if (fechaDesde) params = params.set('fechaDesde', fechaDesde);
     if (fechaHasta) params = params.set('fechaHasta', fechaHasta);
 
-    return this.http.get<Transaccion[]>(this.base, { params, observe: 'response' }).pipe(
+    return this.http.get<any>(this.base, { params }).pipe(
       map((response) => {
-        const items = response.body || [];
-        const total = Number(response.headers.get('X-Total-Count')) || items.length;
-        const totalPages = Math.ceil(total / pageSize);
+        const items = response.items || [];
+        const total = response.totalItems || 0;
         return {
-          items,
+          items: items,
           totalItems: total,
           pageNumber,
           pageSize,
-          totalPages,
+          totalPages: Math.ceil(total / pageSize),
         } as PagedResult<Transaccion>;
       }),
-      catchError((err) => this.handleError(err)),
+      catchError((err) => this.handleError(err))
     );
   }
 
@@ -54,12 +53,17 @@ export class TransaccionesHttpService implements ITransaccionesService {
       .pipe(catchError((err) => this.handleError(err)));
   }
 
-  crear(transaccion: Partial<Transaccion>): Observable<Transaccion> {
-    return this.http
-      .post<Transaccion>(this.base, transaccion)
-      .pipe(catchError((err) => this.handleError(err)));
+  crear(data: any): Observable<Transaccion> {
+    return this.http.post<Transaccion>(this.base, data);
   }
 
+  actualizar(id: number, data: any): Observable<Transaccion> {
+    return this.http.put<Transaccion>(`${this.base}/${id}`, data);
+  }
+
+  eliminar(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.base}/${id}`);
+  }
   private handleError(error: any) {
     console.error('Transacciones API error', error);
     return throwError(() => error);

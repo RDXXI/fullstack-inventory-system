@@ -24,5 +24,19 @@ namespace Transacciones.API.Domain
             PrecioTotal = cantidad * precioUnitario;
             Detalle = detalle;
         }
+
+        public void Actualizar(int productoId, string tipo, int cantidad, decimal precioUnitario, string? detalle = null)
+        {
+            if (cantidad <= 0) throw new ArgumentException("Cantidad debe ser mayor que cero.");
+            if (precioUnitario <= 0) throw new ArgumentException("Precio unitario debe ser mayor que cero.");
+            if (tipo != "Compra" && tipo != "Venta") throw new ArgumentException("Tipo debe ser 'Compra' o 'Venta'.");
+
+            ProductoId = productoId;
+            Tipo = tipo;
+            Cantidad = cantidad;
+            PrecioUnitario = precioUnitario;
+            PrecioTotal = cantidad * precioUnitario;
+            Detalle = detalle;
+        }
     }
 }

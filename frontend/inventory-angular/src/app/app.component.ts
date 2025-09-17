@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductosComponent } from './presentation/productos/productos.component';
 import { TransaccionesComponent } from './presentation/transacciones/transacciones.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -15,4 +16,8 @@ import { TransaccionesComponent } from './presentation/transacciones/transaccion
   `,
   styleUrls: ['./app.scss'],
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor(private titleService: Title) {
+    this.titleService.setTitle('Sistema de Gestión');
+  }
+}

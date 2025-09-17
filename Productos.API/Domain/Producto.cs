@@ -27,8 +27,9 @@ public class Producto
         Stock += cantidad;
     }
 
-    public void ActualizarProducto(string nombre, string descripcion, string categoria, string imagenUrl, decimal precio)
+    public void ActualizarProducto(int id, string nombre, string descripcion, string categoria, string imagenUrl, decimal precio)
     {
+        Id = id;
         Nombre = nombre;
         Descripcion = descripcion;
         Categoria = categoria;

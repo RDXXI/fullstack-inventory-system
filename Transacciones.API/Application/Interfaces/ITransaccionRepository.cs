@@ -6,7 +6,7 @@ namespace Transacciones.API.Application.Interfaces
     {
         Task<Transaccion> AddAsync(Transaccion transaccion);
         Task<Transaccion?> GetByIdAsync(int id);
-        Task<IEnumerable<Transaccion>> GetAllAsync(int pageNumber, int pageSize, string? tipo = null, int? productoId = null, DateTime? fechaDesde = null, DateTime? fechaHasta = null);
+        Task<PagedResult<Transaccion>> GetAllAsync(int pageNumber, int pageSize, string? tipo = null, int? productoId = null, DateTime? fechaDesde = null, DateTime? fechaHasta = null);
         Task<Transaccion> UpdateAsync(Transaccion transaccion);
         Task DeleteAsync(int id);
     }

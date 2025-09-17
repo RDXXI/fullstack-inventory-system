@@ -29,7 +29,7 @@ namespace Transacciones.API.Infrastructure
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Transaccion>> GetAllAsync(
+        public async Task<PagedResult<Transaccion>> GetAllAsync(
             int pageNumber,
             int pageSize,
             string? tipo = null,
@@ -51,11 +51,19 @@ namespace Transacciones.API.Infrastructure
             if (fechaHasta.HasValue)
                 query = query.Where(t => t.Fecha <= fechaHasta.Value);
 
-            return await query
+            var totalItems = await query.CountAsync();
+
+            var items = await query
                 .OrderByDescending(t => t.Fecha)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
+
+            return new PagedResult<Transaccion>
+            {
+                Items = items,
+                TotalItems = totalItems
+            };
         }
 
         public async Task<Transaccion?> GetByIdAsync(int id)
@@ -65,10 +73,15 @@ namespace Transacciones.API.Infrastructure
 
         public async Task<Transaccion> UpdateAsync(Transaccion transaccion)
         {
+            var transaccions = await _context.Transacciones.FindAsync(transaccion.Id);
+            if (transaccions == null)
+                return null;
+
             _context.Transacciones.Update(transaccion);
             await _context.SaveChangesAsync();
             return transaccion;
         }
+
+
     }
 }
- 

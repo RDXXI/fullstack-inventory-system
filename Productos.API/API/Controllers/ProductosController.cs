@@ -45,7 +45,7 @@ public class ProductosController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id, [FromBody] Producto producto)
     {
-        if (id != producto.Id) return BadRequest();
+        producto.ActualizarProducto(id, producto.Nombre, producto.Descripcion, producto.Categoria, producto.ImagenUrl, producto.Precio);
         await _service.ActualizarProductoAsync(producto);
         return NoContent();
     }
@@ -55,5 +55,12 @@ public class ProductosController : ControllerBase
     {
         await _service.EliminarProductoAsync(id);
         return NoContent();
+    }
+
+    [HttpGet("cmbSearch")]
+    public async Task<IActionResult> GetSearch([FromQuery] string search = "")
+    {
+        var productos = await _service.ListarProductosComboAsync(search);
+        return Ok(productos);
     }
 }
