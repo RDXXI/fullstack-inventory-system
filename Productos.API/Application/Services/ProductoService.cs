@@ -18,13 +18,14 @@ public class ProductoService
         await _repository.AddAsync(producto);
         return producto;
     }
-    public async Task<IEnumerable<Producto>> ListarProductosAsync(
-        int pageNumber,
-        int pageSize,
-        string? nombre = null,
-        string? categoria = null)
+    public async Task<PagedResult<Producto>> ListarProductosAsync(
+           int pageNumber,
+           int pageSize,
+           string? nombre = null,
+           string? categoria = null)
     {
-        return await _repository.GetAllAsync(pageNumber, pageSize, nombre, categoria);
+        var pagedResult = await _repository.GetAllAsync(pageNumber, pageSize, nombre, categoria);
+        return pagedResult;
     }
 
     public async Task<Producto?> ObtenerProductoPorIdAsync(int id)
@@ -40,5 +41,11 @@ public class ProductoService
     public async Task EliminarProductoAsync(int id)
     {
         await _repository.DeleteAsync(id);
+    }
+    public async Task<IEnumerable<Producto>> ListarProductosComboAsync(string? nombre = null)
+    {
+        var productos = await _repository.GetAllForComboAsync(nombre);
+
+        return productos;
     }
 }

@@ -27,17 +27,16 @@ export class ProductosHttpService implements IProductosService {
     if (nombre) params = params.set('nombre', nombre);
     if (categoria) params = params.set('categoria', categoria);
 
-    return this.http.get<Producto[]>(this.base, { params, observe: 'response' }).pipe(
+    return this.http.get<any>(this.base, { params }).pipe(
       map((response) => {
-        const items = response.body || [];
-        const total = Number(response.headers.get('X-Total-Count')) || items.length;
-        const totalPages = Math.ceil(total / pageSize);
+        const items = response.items || [];
+        const total = response.totalItems || 0;
         return {
           items,
           totalItems: total,
           pageNumber,
           pageSize,
-          totalPages,
+          totalPages: Math.ceil(total / pageSize),
         } as PagedResult<Producto>;
       }),
       catchError((err) => this.handleError(err)),

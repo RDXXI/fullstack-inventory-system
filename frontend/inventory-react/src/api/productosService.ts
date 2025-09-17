@@ -12,3 +12,25 @@ export const updateProducto = (id: number, data: any) =>
   axios.put(`${API_URL}/${id}`, data);
 
 export const deleteProducto = (id: number) => axios.delete(`${API_URL}/${id}`);
+
+export const searchProductos = async (
+  search: string
+): Promise<ProductoOption[]> => {
+  if (!search) return [];
+  try {
+    const res = await axios.get(`${API_URL}/cmbSearch?search=${search}`);
+    return res.data.map((p: any) => ({
+      value: p.id,
+      label: p.nombre,
+      imagenUrl: p.imagenUrl,
+    }));
+  } catch (error) {
+    console.error("Error al buscar productos:", error);
+    return [];
+  }
+};
+export interface ProductoOption {
+  value: number;
+  label: string;
+  imagenUrl?: string;
+}

@@ -44,5 +44,27 @@ namespace Transacciones.API.Controllers
             var result = await _service.ListarTransaccionesAsync(pageNumber, pageSize, tipo, productoId, fechaDesde, fechaHasta);
             return Ok(result);
         }
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Transaccion>> ActualizarTransaccion(int id, [FromBody] Transaccion dto)
+        {
+            if (id != dto.Id)
+                return BadRequest("El ID de la ruta no coincide con el ID de la transacción.");
+
+            var actualizada = await _service.ActualizarTransaccionAsync(dto);
+            if (actualizada == null)
+                return NotFound();
+
+            return Ok(actualizada);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> EliminarTransaccion(int id)
+        {
+            var eliminada = await _service.EliminarTransaccionAsync(id);
+            if (!eliminada)
+                return NotFound();
+
+            return NoContent();
+        }
     }
 }
